@@ -1,21 +1,13 @@
 pipeline {
-  agent any
-  stages {
-    stage('Parameter') {
-      steps {
-        input 'Ready to go?'
-      }
+    agent any
+    parameters {
+        string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
     }
-    stage('Hello') {
-      steps {
-        bat 'Echo Hello world'
-      }
+    stages {
+        stage('Example') {
+            steps {
+                echo "Hello ${params.PERSON}"
+            }
+        }
     }
-  }
-  parameters {
-    choice(name: 'door_choice', choices: '''one
-two
-three
-four''', description: 'What door do you choose?')
-  }
 }
