@@ -6,6 +6,11 @@ pipeline {
         input 'Ready to go?'
       }
     }
+    stage('Hello') {
+      steps {
+        bat 'Echo Hello world'
+      }
+    }
   }
   parameters {
     choice(name: 'door_choice', choices: '''one
